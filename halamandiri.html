@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Baari Muhammad</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0d0f1a;
+      --ink-muted: #5a6080;
+      --bg: #f2f4fc;
+      --card: #ffffff;
+      --accent: #4361ee;
+      --accent-2: #7209b7;
+      --coral: #f72585;
+      --teal: #4cc9f0;
+      --yellow: #f8c537;
+      --radius: 20px;
+      --container: 1160px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background mesh ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(67,97,238,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 80%, rgba(247,37,133,.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 60% 30%, rgba(76,201,240,.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 0;
+      box-shadow: 0 20px 60px rgba(13,15,26,.07);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      animation: fadeUp .7s ease both;
+    }
+
+    .hero-stripe {
+      width: 10px;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--coral) 50%, var(--yellow) 100%);
+      border-radius: 28px 0 0 28px;
+    }
+
+    .hero-inner {
+      padding: 36px 36px 36px 28px;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      flex: 0 0 130px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px rgba(67,97,238,.15), 0 12px 30px rgba(13,15,26,.12);
+      background: linear-gradient(135deg, #e0e7ff, #f0e6ff);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: top;  }
+
+    .hero-body { flex: 1; min-width: 200px; }
+
+    .name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--accent), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .role {
+      margin-top: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .bio {
+      margin-top: 12px;
+      font-size: 15px;
+      color: #2d3050;
+      line-height: 1.65;
+      max-width: 68ch;
+    }
+
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .15s ease, box-shadow .15s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 8px 20px rgba(67,97,238,.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(67,97,238,.35); }
+
+    .btn-ghost {
+      background: transparent;
+      border: 2px solid rgba(67,97,238,.18);
+      color: var(--accent);
+    }
+    .btn-ghost:hover { background: rgba(67,97,238,.06); transform: translateY(-2px); }
+
+    /* ── GRID LAYOUT ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .col-main { display: flex; flex-direction: column; gap: 24px; }
+    .col-side { display: flex; flex-direction: column; gap: 24px; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 32px rgba(13,15,26,.05);
+      border: 1px solid rgba(255,255,255,.8);
+      animation: fadeUp .7s ease both;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    .card-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      background: rgba(90,96,128,.08);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── ORG LIST ── */
+    .org-list { display: flex; flex-direction: column; gap: 4px; }
+
+    .org {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 14px;
+      border-radius: 14px;
+      transition: background .15s ease, transform .15s ease;
+      position: relative;
+    }
+
+    .org::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 0;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--accent), var(--coral));
+      transition: height .2s ease;
+    }
+
+    .org:hover {
+      background: linear-gradient(90deg, rgba(67,97,238,.04), transparent);
+      transform: translateX(4px);
+    }
+    .org:hover::before { height: 60%; }
+
+    .logo {
+      flex: 0 0 54px;
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(13,15,26,.06);
+    }
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .org-meta h4 {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .org-meta p {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    .tag-inline {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background: rgba(67,97,238,.08);
+      color: var(--accent);
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(67,97,238,.15), rgba(247,37,133,.1));
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    .gallery-item:hover::after { opacity: 1; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    /* ── SKILLS ── */
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .chip:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+
+    .chip-1 { background: linear-gradient(135deg, #dbeafe, #e0e7ff); color: #2563eb; }
+    .chip-2 { background: linear-gradient(135deg, #fce7f3, #ede9fe); color: #9333ea; }
+    .chip-3 { background: linear-gradient(135deg, #d1fae5, #e0f2fe); color: #0891b2; }
+    .chip-4 { background: linear-gradient(135deg, #fef9c3, #fde68a); color: #b45309; }
+    .chip-5 { background: linear-gradient(135deg, #ffe4e6, #fecdd3); color: #e11d48; }
+
+    /* ── ASIDE ── */
+    .contact-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(67,97,238,.04), rgba(247,37,133,.03));
+      text-decoration: none;
+      color: inherit;
+      transition: transform .15s, box-shadow .15s;
+      border: 1px solid rgba(67,97,238,.06);
+    }
+    .contact-item:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(67,97,238,.1); }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .ci-email { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+    .ci-wa    { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+    .ci-li    { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+
+    .contact-text .label { font-weight: 700; font-size: 13px; color: var(--ink); }
+    .contact-text .value { font-size: 12px; color: var(--ink-muted); margin-top: 2px; word-break: break-all; }
+
+    /* ── STAT PILLS ── */
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-card {
+      border-radius: 14px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .stat-card:nth-child(1) { background: linear-gradient(135deg, #e0e7ff, #dbeafe); }
+    .stat-card:nth-child(2) { background: linear-gradient(135deg, #fce7f3, #ffe4e6); }
+    .stat-card:nth-child(3) { background: linear-gradient(135deg, #d1fae5, #e0f2fe); }
+    .stat-card:nth-child(4) { background: linear-gradient(135deg, #fef9c3, #fde68a); }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .stat-label { font-size: 11px; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-muted);
+      padding-top: 8px;
+    }
+    footer span { color: var(--coral); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(1) { animation-delay: .05s; }
+    .card:nth-child(2) { animation-delay: .1s; }
+    .card:nth-child(3) { animation-delay: .15s; }
+    .card:nth-child(4) { animation-delay: .2s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .col-side {
+        order: -1;
+      }
+      .stats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-wrap { padding: 16px 12px 48px; gap: 16px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-stripe { width: 100%; height: 8px; border-radius: 28px 28px 0 0; background: linear-gradient(90deg, var(--accent) 0%, var(--coral) 50%, var(--yellow) 100%); }
+      .hero-inner { padding: 24px 20px; }
+      .avatar { flex: 0 0 100px; width: 100px; height: 100px; }
+      .card { padding: 20px 16px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .name { font-size: 28px; }
+    }
+
+    @media (max-width: 380px) {
+      .actions { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(67,97,238,.12), transparent);
+      margin: 4px 0 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-stripe"></div>
+      <div class="hero-inner">
+        <div class="avatar">
+          <img src="Baari Muhammad .jpg" alt="Foto Baari Muhammad">
+        </div>
+        <div class="hero-body">
+          <h1 class="name">Baari Muhammad</h1>
+          <div class="role">Information System • Universitas Airlangga • 2024</div>
+          <p class="bio">
+            Second-year Information Systems student at Universitas Airlangga. Interested in engineering and business, with a record of campus service. Strong problem solving, leadership, mentoring, and communication skills.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:baari.muhammad-2024@fst.ac.id">✉ Email</a>
+            <a class="btn btn-ghost" href="https://wa.me/08111494420" target="_blank" rel="noopener">💬 WhatsApp</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/baari-muhammad/" target="_blank" rel="noopener">🔗 LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN GRID -->
+    <div class="layout">
+
+      <!-- LEFT COLUMN -->
+      <div class="col-main">
+
+        <!-- Org Experience -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="title-dot"></span>Organizational Experience</div>
+            <span class="card-badge">Selected Roles</span>
+          </div>
+          <div class="divider"></div>
+          <div class="org-list">
+            <article class="org">
+              <div class="logo"><img src="Logo-Bem-fst.jpg" alt="BEM FST"></div>
+              <div class="org-meta">
+                <h4>BEM Fakultas Sains dan Teknologi</h4>
+                <p>Staff of Sports and Artistry Dept — 2025</p>
+                <p>Head of Internal Division Public Relation Dept — 2026</p>
+                <span class="tag-inline">BEM FST</span>
+              </div>
+            </article>
+            <article class="org">
+              <div class="logo"><img src="Logo HIMSI.png" alt="HIMSI"></div>
+              <div class="org-meta">
+                <h4>Himpunan Mahasiswa Sistem Informasi (HIMSI)</h4>
+                <p>DPO HIMSI — 2025</p>
+                <p>Senior Officer of Talent Development HRD — 2026</p>
+                <span class="tag-inline">HIMSI</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Volunteer -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="title-dot" style="background:var(--teal)"></span>Volunteer Experience</div>
+            <span class="card-badge">Events & Coordination</span>
+          </div>
+          <div class="divider"></div>
+          <div class="org-list">
+            <article class="org">
+              <div class="logo"><img src="Logo-Bem-fst.jpg" alt="BEM FST"></div>
+              <div class="org-meta">
+                <h4>BEM Fakultas Sains dan Teknologi</h4>
+                <p>Staff of Futsal Competition Dekan Cup — 2025</p>
+                <p>Runner & Equipment Staff for multiple campus events — 2025</p>
+              </div>
+            </article>
+            <article class="org">
+              <div class="logo"><img src="Logo_sman_4_tangsel.jpeg" alt="SMA N 4 Tangsel"></div>
+              <div class="org-meta">
+                <h4>SMA Negeri 4 Tangsel</h4>
+                <p>Liaison Officer, Kembali Pulang — 2024</p>
+              </div>
+            </article>
+            <article class="org">
+              <div class="logo"><img src="bem unair.jpg" alt="BEM UNAIR"></div>
+              <div class="org-meta">
+                <h4>BEM Universitas Airlangga</h4>
+                <p>Logistics Coordinator, Airlangga Trail Run — 2025</p>
+              </div>
+            </article>
+               <article class="org">
+              <div class="logo"><img src="Duta fst.jpg" alt="Duta FST"></div>
+              <div class="org-meta">
+                <h4>Duta Fakultas Sains dan Teknologi</h4>
+                <p>Equipment Staff Newton — 2025</p>
+                <p>Equipment Staff Grand Selection and Grand Final Duta FST — 2026</p>
+              </div>
+          </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="title-dot" style="background:var(--yellow)"></span>Documentation</div>
+            <span class="card-badge">Activities & Projects</span>
+          </div>
+          <div class="divider"></div>
+          <div class="gallery">
+            <div class="gallery-item"><img src="IMG_0107.JPG" alt="Dokumentasi 1"></div>
+            <div class="gallery-item"><img src="IMG-20250920-WA0033.jpg" alt="Dokumentasi 2"></div>
+            <div class="gallery-item"><img src="minum.jpg" alt="Dokumentasi 3"></div>
+            <div class="gallery-item"><img src="newton.JPG" alt="Dokumentasi 4"></div>
+            <div class="gallery-item"><img src="WhatsApp Image 2025-12-30 at 15.09.24.jpeg" alt="Dokumentasi 5"></div>
+            <div class="gallery-item"><img src="mentor ojt.jpeg" alt="Dokumentasi 6"></div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="title-dot" style="background:var(--accent-2)"></span>Skills</div>
+            <span class="card-badge">Hard & Soft Skills</span>
+          </div>
+          <div class="divider"></div>
+          <div class="skills">
+            <span class="chip chip-1">🎯 Leadership</span>
+            <span class="chip chip-2">💬 Communication</span>
+            <span class="chip chip-3">🤝 Teamwork</span>
+            <span class="chip chip-4">🔍 Problem Solving</span>
+            <span class="chip chip-5">⏱ Time Management</span>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="col-side">
+
+        <!-- Stats -->
+        <div class="card">
+          <div class="card-header" style="margin-bottom:16px">
+            <div class="card-title"><span class="title-dot" style="background:var(--accent)"></span>At a Glance</div>
+          </div>
+          <div class="stats">
+            <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Organizations Roles</div></div>
+            <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Events</div></div>
+            <div class="stat-card"><div class="stat-num">2024</div><div class="stat-label">Angkatan</div></div>
+            <div class="stat-card"><div class="stat-num">IS</div><div class="stat-label">Major</div></div>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="title-dot" style="background:var(--coral)"></span>Kontak</div>
+          </div>
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:baari.muhammad-2024@fst.ac.id">
+              <div class="contact-icon ci-email">📧</div>
+              <div class="contact-text">
+                <div class="label">Email</div>
+                <div class="value">baari.muhammad-2024@fst.ac.id</div>
+              </div>
+            </a>
+            <a class="contact-item" href="https://wa.me/08111494420" target="_blank" rel="noopener">
+              <div class="contact-icon ci-wa">💬</div>
+              <div class="contact-text">
+                <div class="label">WhatsApp</div>
+                <div class="value">+62 811-1494-420</div>
+              </div>
+            </a>
+            <a class="contact-item" href="https://www.linkedin.com/in/baari-muhammad/" target="_blank" rel="noopener">
+              <div class="contact-icon ci-li">🔗</div>
+              <div class="contact-text">
+                <div class="label">LinkedIn</div>
+                <div class="value">linkedin.com/in/baari-muhammad</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="title-dot" style="background:var(--teal)"></span>Ringkasan</div>
+          </div>
+          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;">
+            Mahasiswa Sistem Informasi yang fokus pada analitik dan operasi. Terbiasa bekerja di tim lintas bidang dan mengatur event kampus berskala besar. Ingin berkontribusi pada proyek data dan pengembangan organisasi.
+          </p>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <footer>
+      © 2026 • Baari Muhammad &nbsp;·&nbsp; Made with <span>♥</span>
+    </footer>
+
+  </div>
+</body>
+</html>
