@@ -1,0 +1,714 @@
+/* ============================================================
+   style.css — Baari Muhammad Portfolio
+   ============================================================ */
+
+
+/* ── 1. CSS VARIABLES (Theme) ─────────────────────────────── */
+:root {
+  --ink:        #0d0f1a;
+  --ink-muted:  #5a6080;
+  --bg:         #f2f4fc;
+  --card:       #ffffff;
+  --accent:     #4361ee;
+  --accent-2:   #7209b7;
+  --coral:      #f72585;
+  --teal:       #4cc9f0;
+  --yellow:     #f8c537;
+  --radius:     20px;
+  --container:  1160px;
+  --transition: 0.2s ease;
+}
+
+
+/* ── 2. RESET & BASE ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ── 3. PAGE WRAPPER ──────────────────────────────────────── */
+.page-wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+
+  /* Flexbox: stack sections vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+/* ── 4. HERO SECTION ──────────────────────────────────────── */
+.hero {
+  background: var(--card);
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(13, 15, 26, 0.07);
+  overflow: hidden;
+
+  /* Grid: thin color stripe + content area */
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.hero-stripe {
+  width: 10px;
+  background: linear-gradient(180deg, var(--accent), var(--coral), var(--yellow));
+}
+
+.hero-inner {
+  padding: 36px;
+
+  /* Flexbox: avatar beside text */
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Avatar ── */
+.avatar {
+  flex-shrink: 0;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15),
+              0 12px 30px rgba(13, 15, 26, 0.12);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.4s ease;
+}
+
+.avatar:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Hero Text ── */
+.hero-body {
+  flex: 1;
+  min-width: 200px;
+}
+
+.name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bio {
+  margin-top: 12px;
+  max-width: 70ch;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+/* ── Action Buttons ── */
+.actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  box-shadow: 0 8px 20px rgba(67, 97, 238, 0.28);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(67, 97, 238, 0.38);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 2px solid rgba(67, 97, 238, 0.2);
+  color: var(--accent);
+}
+
+.btn-ghost:hover {
+  background: rgba(67, 97, 238, 0.06);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+
+/* ── 5. MAIN LAYOUT (CSS Grid — 2 Columns) ───────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+.col-main,
+.col-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+/* ── 6. CARD ──────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 8px 32px rgba(13, 15, 26, 0.05);
+  border: 1px solid rgba(10, 10, 10, 0.02);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+
+.card-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  background: rgba(90, 96, 128, 0.08);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+/* Title dot accent */
+.title-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+  flex-shrink: 0;
+}
+
+/* Card divider line */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+  margin: 0 0 16px;
+}
+
+
+/* ── 7. ORGANIZATION LIST ─────────────────────────────────── */
+.org-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.org {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 14px 12px;
+  border-radius: 14px;
+  position: relative;
+  transition: background var(--transition), transform var(--transition);
+}
+
+/* Left hover bar */
+.org::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  border-radius: 99px;
+  background: linear-gradient(180deg, var(--accent), var(--coral));
+  transition: height 0.2s ease;
+}
+
+.org:hover {
+  background: linear-gradient(90deg, rgba(67, 97, 238, 0.04), transparent);
+  transform: translateX(4px);
+}
+
+.org:hover::before {
+  height: 60%;
+}
+
+/* Logo */
+.logo {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0f2ff;
+  box-shadow: 0 4px 12px rgba(13, 15, 26, 0.06);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Org meta text */
+.org-meta h4 {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.org-meta p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.tag-inline {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: rgba(67, 97, 238, 0.08);
+  color: var(--accent);
+}
+
+
+/* ── 8. GALLERY (CSS Grid) ────────────────────────────────── */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.gallery-item {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+
+/* Hover color overlay */
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(67, 97, 238, 0.15),
+    rgba(247, 37, 133, 0.1));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+
+/* ── 9. SKILLS CHIPS ──────────────────────────────────────── */
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: default;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Individual chip color schemes */
+.chip-1 { background: linear-gradient(135deg, #dbeafe, #e0e7ff); color: #2563eb; }
+.chip-2 { background: linear-gradient(135deg, #fce7f3, #ede9fe); color: #9333ea; }
+.chip-3 { background: linear-gradient(135deg, #d1fae5, #e0f2fe); color: #0891b2; }
+.chip-4 { background: linear-gradient(135deg, #fef9c3, #fde68a); color: #b45309; }
+.chip-5 { background: linear-gradient(135deg, #ffe4e6, #fecdd3); color: #e11d48; }
+
+
+/* ── 10. STATS (CSS Grid) ─────────────────────────────────── */
+.stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-card {
+  border-radius: 14px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: transform var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card:nth-child(1) { background: linear-gradient(135deg, #e0e7ff, #dbeafe); }
+.stat-card:nth-child(2) { background: linear-gradient(135deg, #fce7f3, #ffe4e6); }
+.stat-card:nth-child(3) { background: linear-gradient(135deg, #d1fae5, #e0f2fe); }
+.stat-card:nth-child(4) { background: linear-gradient(135deg, #fef9c3, #fde68a); }
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 4px;
+}
+
+
+/* ── 11. CONTACT LIST ─────────────────────────────────────── */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,
+    rgba(67, 97, 238, 0.04),
+    rgba(247, 37, 133, 0.03));
+  border: 1px solid rgba(67, 97, 238, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.contact-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.1);
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ci-email { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+.ci-wa    { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+.ci-li    { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+
+.contact-text .label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.contact-text .value {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+  word-break: break-all;
+}
+
+
+/* ── 12. FOOTER ───────────────────────────────────────────── */
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-muted);
+  padding: 8px 0;
+}
+
+footer span {
+  color: var(--coral);
+}
+
+
+/* ── 13. ANIMATIONS ───────────────────────────────────────── */
+
+/* Pulse glow on avatar (continuous, not a load animation) */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15),
+                0 12px 30px rgba(13, 15, 26, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(67, 97, 238, 0.1),
+                0 16px 40px rgba(13, 15, 26, 0.16);
+  }
+}
+
+.avatar {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Keyframe used by scroll reveal */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+/* Elements start hidden, JS adds .visible when they enter viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay for cards inside the same column */
+.col-main .reveal:nth-child(2) { transition-delay: 0.1s; }
+.col-main .reveal:nth-child(3) { transition-delay: 0.2s; }
+.col-main .reveal:nth-child(4) { transition-delay: 0.3s; }
+.col-side .reveal:nth-child(2) { transition-delay: 0.1s; }
+.col-side .reveal:nth-child(3) { transition-delay: 0.2s; }
+
+
+/* ── 14. RESPONSIVE — Flexbox/Grid Breakpoints ────────────── */
+
+/* Tablet: collapse to single column */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .col-side {
+    order: -1; /* sidebar moves above main content */
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Mobile large */
+@media (max-width: 640px) {
+  .page-wrap {
+    padding: 16px 12px 48px;
+    gap: 16px;
+  }
+
+  /* Hero becomes single-column (no grid) */
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stripe {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--accent), var(--coral), var(--yellow));
+    animation: none;
+  }
+
+  .hero-inner {
+    padding: 24px 20px;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile small */
+@media (max-width: 420px) {
+  .hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+
+/* ── 15. BOOTSTRAP GRID COMPATIBILITY ─────────────────────── */
+/*
+   The Bootstrap grid uses .container, .row, and .col-* classes.
+   These overrides ensure our custom styles don't conflict with
+   Bootstrap's grid when added to the HTML later.
+*/
+
+/* Prevent Bootstrap container from overriding our page-wrap */
+.container,
+.container-fluid {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* Make Bootstrap rows inside cards look clean */
+.card .row {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.card .row > [class*="col-"] {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Bootstrap col helpers for the stats grid */
+.stats.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stats.row .stat-card {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+@media (min-width: 576px) {
+  .stats.row .stat-card {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}

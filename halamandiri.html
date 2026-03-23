@@ -4,197 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Baari Muhammad</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-
-  <style>
-   :root {
-  --ink: #0d0f1a;
-  --ink-muted: #5a6080;
-  --bg: #f2f4fc;
-  --card: #ffffff;
-  --accent: #4361ee;
-  --accent-2: #7209b7;
-  --coral: #f72585;
-  --teal: #4cc9f0;
-  --yellow: #f8c537;
-  --radius: 20px;
-  --container: 1160px;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-}
-
-.page-wrap {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 32px 20px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.hero {
-  background: var(--card);
-  border-radius: 28px;
-  box-shadow: 0 20px 60px rgba(13,15,26,.07);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
-.hero-stripe {
-  width: 10px;
-  background: linear-gradient(180deg, var(--accent), var(--coral), var(--yellow));
-}
-
-.hero-inner {
-  padding: 36px;
-  display: flex;
-  gap: 28px;
-  align-items: center;
-}
-
-.avatar {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  overflow: hidden;
-
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-.name {
-  font-family: 'Syne', sans-serif;
-  font-size: 36px;
-  font-weight: 800;
-}
-
-.role {
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-top: 6px;
-}
-
-.bio {
-  margin-top: 12px;
-  max-width: 70ch;
-}
-
-.actions {
-  margin-top: 16px;
-  display: flex;
-  gap: 12px;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 24px;
-}
-
-.col-main,
-.col-side {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 28px;
-  box-shadow: 0 8px 32px rgba(13,15,26,.05);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-.card-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-}
-
-.org-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.org {
-  display: flex;
-  gap: 16px;
-}
-
-.logo {
-  width: 54px;
-  height: 54px;
-}
-
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 10px;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-}
-
-.skills {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.stats {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-footer {
-  text-align: center;
-  font-size: 13px;
-  color: var(--ink-muted);
-}
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
+
 <body>
   <div class="page-wrap">
 
     <!-- HERO -->
-    <header class="hero">
+    <header class="hero reveal"> 
       <div class="hero-stripe"></div>
       <div class="hero-inner">
         <div class="avatar">
@@ -222,7 +41,7 @@ footer {
       <div class="col-main">
 
         <!-- Org Experience -->
-        <section class="card">
+        <section class="card reveal">
           <div class="card-header">
             <div class="card-title"><span class="title-dot"></span>Organizational Experience</div>
             <span class="card-badge">Selected Roles</span>
@@ -251,7 +70,7 @@ footer {
         </section>
 
         <!-- Volunteer -->
-        <section class="card">
+        <section class="card reveal">
           <div class="card-header">
             <div class="card-title"><span class="title-dot" style="background:var(--teal)"></span>Volunteer Experience</div>
             <span class="card-badge">Events & Coordination</span>
@@ -291,7 +110,7 @@ footer {
         </section>
 
         <!-- Gallery -->
-        <section class="card">
+        <section class="card reveal">
           <div class="card-header">
             <div class="card-title"><span class="title-dot" style="background:var(--yellow)"></span>Documentation</div>
             <span class="card-badge">Activities & Projects</span>
@@ -308,7 +127,7 @@ footer {
         </section>
 
         <!-- Skills -->
-        <section class="card">
+        <section class="card reveal">
           <div class="card-header">
             <div class="card-title"><span class="title-dot" style="background:var(--accent-2)"></span>Skills</div>
             <span class="card-badge">Hard & Soft Skills</span>
@@ -329,7 +148,8 @@ footer {
       <aside class="col-side">
 
         <!-- Stats -->
-        <div class="card">
+        <div class="card reveal">
+          <div class="card reveal"
           <div class="card-header" style="margin-bottom:16px">
             <div class="card-title"><span class="title-dot" style="background:var(--accent)"></span>At a Glance</div>
           </div>
@@ -342,7 +162,7 @@ footer {
         </div>
 
         <!-- Contact -->
-        <div class="card">
+        <div class="card reveal">
           <div class="card-header">
             <div class="card-title"><span class="title-dot" style="background:var(--coral)"></span>Kontak</div>
           </div>
@@ -372,7 +192,7 @@ footer {
         </div>
 
         <!-- Summary -->
-        <div class="card">
+        <div class="card reveal">
           <div class="card-header">
             <div class="card-title"><span class="title-dot" style="background:var(--teal)"></span>Ringkasan</div>
           </div>
@@ -390,5 +210,19 @@ footer {
     </footer>
 
   </div>
+  <script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible'); // ← tambah ini
+      }
+
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
